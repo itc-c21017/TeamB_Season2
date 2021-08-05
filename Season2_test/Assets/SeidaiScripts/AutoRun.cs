@@ -23,7 +23,7 @@ public class AutoRun : MonoBehaviour
     public float accelerationZ;
     bool coroutineBool = false;
 
-    public ScoreManager scoreManager;
+    public UI ui;
     public int score;
     void Start()
     {
@@ -42,8 +42,8 @@ public class AutoRun : MonoBehaviour
             float ratioX = (targetLaneX * LaneWidthX - transform.position.x) / LaneWidthX;
             moveDirection.x = ratioX * speedX;
 
-            score = ScoreManager.GetScore();//«”\’á‰º
-            if (score >= 40)
+            score = UI.Ascore();//«”\’á‰º
+            if (score >= 2)
             {
                 moveDirection.x *= 0.3f;
             }
@@ -105,7 +105,7 @@ public class AutoRun : MonoBehaviour
     }
     IEnumerator LeftRotation()
     {
-        moveDirection.y = speedJump * -1.5f;
+        moveDirection.y = speedJump * -3.0f;
         for (int turn = 0; turn < 15; turn++)
         {
             Stage.transform.Rotate(0, 0, 6);
@@ -115,7 +115,7 @@ public class AutoRun : MonoBehaviour
     }
     IEnumerator RightRotation()
     {
-        moveDirection.y = speedJump * -1.5f;
+        moveDirection.y = speedJump * -3.0f;
         for (int turn = 0; turn < 15; turn++)
         {
             Stage.transform.Rotate(0, 0, -6);
