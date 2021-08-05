@@ -19,5 +19,5 @@ public class CameraFallow : MonoBehaviour
             target.transform.position - diff,
             Time.deltaTime * followSpeed
             );
-    }
+    }//ƒJƒƒ‰’Ç]‚Ég‚¤‚Á‚·
 }

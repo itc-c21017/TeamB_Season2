@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AutoRun : MonoBehaviour
 {
+    //自動走行、壁面、天井移動全部を司るっす
     const int MinLaneX = -3;
     const int MaxLaneX = 3;
     const float LaneWidthX = 1.5f;

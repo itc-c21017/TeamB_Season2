@@ -9,7 +9,7 @@ public class BlackHoleDestroy : MonoBehaviour
         if (other.gameObject.tag == "Gomi")
         {
             //scoreManager.AddScore(score);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject);//タグ判定してオブジェクト消すっす
         }
     }
 }

@@ -16,6 +16,6 @@ public class BlackHole : MonoBehaviour
         float PZ = this.transform.position.z;
         PZ += 2;
         GameObject light = (GameObject)Instantiate(BlackHolePrefab, new Vector3(0, 5, PZ),
-        Quaternion.Euler(0, 0, 0));
+        Quaternion.Euler(0, 0, 0));//ブラックホール出すやつっす
     }
 }

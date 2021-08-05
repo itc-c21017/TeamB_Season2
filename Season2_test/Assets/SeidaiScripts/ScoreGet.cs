@@ -8,7 +8,7 @@ public class ScoreGet : MonoBehaviour
     public int score;
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Point")//床のタグ(wall)を検知し、自身を消滅させスコア加算。スコアはUnity上で設定可能。
+        if (other.gameObject.tag == "Point")//当たり判定のタグ検知してポイント増やすっす
         {
             scoreManager.AddScore(score);
         }
