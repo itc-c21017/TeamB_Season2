@@ -5,7 +5,7 @@ using UnityEngine;
 public class Destroy : MonoBehaviour
 {
     public UI ui;
-    int score;
+    public int score;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +26,7 @@ public class Destroy : MonoBehaviour
         }
         if (collision.gameObject.tag == "BlackHole")
         {
-            score = UI.AreaClear();
-            score += 1;
+            ui.Shinchoku(score);
             Destroy(gameObject);
         }
     }

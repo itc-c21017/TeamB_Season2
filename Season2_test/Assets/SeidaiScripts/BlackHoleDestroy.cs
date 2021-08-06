@@ -10,8 +10,8 @@ public class BlackHoleDestroy : MonoBehaviour
     {
         if (other.gameObject.tag == "BlackHole")
         {
-            score = UI.AreaClear();
-            score += 1;
+            /*score = UI.Shinchoku();
+            score += 5;*/
             Destroy(this.gameObject);//タグ判定してオブジェクト消すっす
         }
     }

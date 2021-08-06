@@ -14,7 +14,7 @@ public class UI : MonoBehaviour
     float a = 100;
     float j = 0;
     static int c = 0;
-    int d = 0;
+    static int d = 0;
 
     // Start is called before the first frame update
     public void Start()
@@ -101,5 +101,10 @@ public class UI : MonoBehaviour
     public static int AreaClear()
     {
         return (int)c;
+    }
+
+    public void Shinchoku(int amount)
+    {
+        d += amount;
     }
 }
