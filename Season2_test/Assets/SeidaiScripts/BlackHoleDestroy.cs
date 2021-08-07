@@ -5,13 +5,12 @@ using UnityEngine;
 public class BlackHoleDestroy : MonoBehaviour
 {
     public UI ui;
-    int score;
+    public int score;
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "BlackHole")
         {
-            /*score = UI.Shinchoku();
-            score += 5;*/
+            ui.Shinchoku(score);
             Destroy(this.gameObject);//タグ判定してオブジェクト消すっす
         }
     }

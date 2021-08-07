@@ -9,6 +9,7 @@ TagManager:
   - Down
   - ShoriPoint
   - BlackHole
+  - Heal
   layers:
   - Default
   - TransparentFX

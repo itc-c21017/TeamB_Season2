@@ -24,10 +24,5 @@ public class Destroy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (collision.gameObject.tag == "BlackHole")
-        {
-            ui.Shinchoku(score);
-            Destroy(gameObject);
-        }
     }
 }

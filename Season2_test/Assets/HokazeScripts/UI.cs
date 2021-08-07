@@ -9,8 +9,10 @@ public class UI : MonoBehaviour
     public Text GoalText;
     public Text KeikokuText;
     public Slider HPslider;
+    public BlackHolePanel blackHolePanel;
+    public BlackHole blackHole;
     static int i = 0;
-    int maxHp = 100;
+    float maxHp = 100;
     float a = 100;
     float j = 0;
     static int c = 0;
@@ -52,6 +54,8 @@ public class UI : MonoBehaviour
         int Clear = AreaClear();
         GoalText.text = "掃除率 : " + d + "%";
 
+        blackHolePanel.UpdateBlackHole(blackHole.BlackHoleCount());
+
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -74,7 +78,7 @@ public class UI : MonoBehaviour
             // 進捗率の計算
             c = c + i;
             c = c * 5;
-            
+
             // ゴミスタックを初期化
             i = 0;
 
@@ -83,10 +87,13 @@ public class UI : MonoBehaviour
 
             // 進捗率の計算を初期化
             c = 0;
-            
-            
-        }
 
+
+        }else if( other.gameObject.tag == "Heal")
+        {
+            // Healタグに接触すると充電量が5回復する
+            a += 5;
+        }
 
 
         
