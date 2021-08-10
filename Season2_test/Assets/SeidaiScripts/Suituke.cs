@@ -6,8 +6,6 @@ public class Suituke : MonoBehaviour
 {
     public string targetTag;
     bool isHolding;
-    public UI ui;
-    int score;
 
     public bool IsHolding()
     {

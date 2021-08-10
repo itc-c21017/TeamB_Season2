@@ -7,6 +7,7 @@ public class Result : MonoBehaviour
 {
     int score;
     public Text ResultText;
+    public Text Achievement;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +18,16 @@ public class Result : MonoBehaviour
     void Update()
     {
         score = UI.GetScore();
-            
 
-        if ( score >= 2)
+        Achievement.text = "Level of achievement@" + score + "“";
+
+        if ( score >= 20)
         {
             ResultText.text = "RANK SSS";
+        }
+        else if( score >= 10)
+        {
+            ResultText.text = "RANK A";
         }
         else
         {

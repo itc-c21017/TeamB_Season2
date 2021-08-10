@@ -11,7 +11,7 @@ public class BlackHoleDestroy : MonoBehaviour
         if (other.gameObject.tag == "BlackHole")
         {
             ui.Shinchoku(score);
-            Destroy(this.gameObject);//タグ判定してオブジェクト消すっす
+            Destroy(this.gameObject,0.5f);//タグ判定してオブジェクト消すっす
         }
     }
 }
