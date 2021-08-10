@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
-    public UI ui;
-    public int score;
     // Start is called before the first frame update
     void Start()
     {

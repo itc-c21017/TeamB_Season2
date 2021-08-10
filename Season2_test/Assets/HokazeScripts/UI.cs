@@ -17,6 +17,12 @@ public class UI : MonoBehaviour
     float j = 0;
     static int c = 0;
     static int d = 0;
+    public static int Score;
+
+    public static int GetScore()
+    {
+        return Score;
+    }
 
     // Start is called before the first frame update
     public void Start()
@@ -30,12 +36,14 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        Score = d;
+        
         // ごみ量を更新
         int score = Ascore();
         GomiText.text = "ごみ量 : " + i + "点";
 
-        // ゴミをスタックしている数が2個以上の時
-        if (i >= 2)
+        // ゴミをスタックしている数が5個以上の時
+        if (i >= 5)
         {
             KeikokuText.text = "ゴミを捨てよう";
 
@@ -77,7 +85,7 @@ public class UI : MonoBehaviour
         {
             // 進捗率の計算
             c = c + i;
-            c = c * 5;
+            c = c * 2;
 
             // ゴミスタックを初期化
             i = 0;

@@ -20,7 +20,7 @@ public class BlackHole : MonoBehaviour
 
         float PZ = this.transform.position.z;
         PZ += 2;
-        GameObject light = (GameObject)Instantiate(BlackHolePrefab, new Vector3(0, 5, PZ),
+        GameObject BlackHole = (GameObject)Instantiate(BlackHolePrefab, new Vector3(0, 5, PZ),
         Quaternion.Euler(0, 0, 0));//ブラックホール出すやつっす
 
         count -= 1;
@@ -31,9 +31,13 @@ public class BlackHole : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "BlackHoleHeal")
+        if (other.gameObject.tag == "BlackHoleHeal" && count < 3)
         {
             count += 1;
+            Destroy(other.gameObject);
+        }
+        else if(other.gameObject.tag == "BlackHoleHeal" && count == 3)
+        {
             Destroy(other.gameObject);
         }
     }

@@ -43,7 +43,7 @@ public class AutoRun : MonoBehaviour
             moveDirection.x = ratioX * speedX;
 
             score = UI.Ascore();//«”\’á‰º
-            if (score >= 2)
+            if (score >= 5)
             {
                 moveDirection.x *= 0.3f;
             }
