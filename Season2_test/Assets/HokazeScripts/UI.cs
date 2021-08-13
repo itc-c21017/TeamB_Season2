@@ -62,6 +62,7 @@ public class UI : MonoBehaviour
         int Clear = AreaClear();
         GoalText.text = "掃除率 : " + d + "%";
 
+        //ブラックホールのカウント
         blackHolePanel.UpdateBlackHole(blackHole.BlackHoleCount());
 
     }
@@ -97,14 +98,17 @@ public class UI : MonoBehaviour
             c = 0;
 
 
-        }else if( other.gameObject.tag == "Heal")
+        }
+        else if( other.gameObject.tag == "Heal")
         {
             // Healタグに接触すると充電量が5回復する
             a += 5;
         }
-
-
-        
+        else if(other.gameObject.tag == "Syougaibutu")
+        {
+            //Syougaibutuタグに接触するとゴミをすべて吐き出す(iを0に)
+            i = 0;
+        }
     }
 
     // 以下は関数

@@ -5,24 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class ButtonClick : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void OnClickStartButton()
+
+    public void OnButtonStartClicked()
+    {
+        Invoke("Main", 1);
+    }
+    void Main()
     {
         SceneManager.LoadScene("Select");
     }
 
-    public void OnClickStartButtonEasy()
+    public void OnButtonStartEasyClicked()
+    {
+        Invoke("Main2", 1);
+    }
+    void Main2()
     {
         SceneManager.LoadScene("Play");
     }
