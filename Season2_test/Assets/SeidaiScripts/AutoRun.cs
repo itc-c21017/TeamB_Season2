@@ -45,7 +45,7 @@ public class AutoRun : MonoBehaviour
             score = UI.Ascore();//«”\’á‰º
             if (score >= 5)
             {
-                moveDirection.x *= 0.3f;
+                moveDirection.x *= 0.6f;
             }
         }
         Vector3 globalDirection = transform.TransformDirection(moveDirection);

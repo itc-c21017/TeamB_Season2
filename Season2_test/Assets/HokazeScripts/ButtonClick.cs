@@ -25,15 +25,6 @@ public class ButtonClick : MonoBehaviour
     }
     void Main()
     {
-        SceneManager.LoadScene("Select");
-    }
-
-    public void OnButtonStartEasyClicked()
-    {
-        Invoke("Main2", 1);
-    }
-    void Main2()
-    {
         SceneManager.LoadScene("Play");
     }
 }

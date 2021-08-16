@@ -11,6 +11,7 @@ TagManager:
   - BlackHole
   - Heal
   - BlackHoleHeal
+  - Syougaibutu
   layers:
   - Default
   - TransparentFX

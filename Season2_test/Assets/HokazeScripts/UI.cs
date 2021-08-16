@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
@@ -18,6 +19,13 @@ public class UI : MonoBehaviour
     static int c = 0;
     static int d = 0;
     public static int Score;
+    public AudioClip sound;
+    public AudioClip sound2;
+    public AudioClip sound3;
+    public AudioClip sound4;
+    public AudioClip sound5;
+    AudioSource audioSource;
+    int cnt = 3;
 
     public static int GetScore()
     {
@@ -27,6 +35,8 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         // 充電量をMAXからスタート
         HPslider.value = 1;
 
@@ -36,6 +46,16 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if ( cnt > 0)
+            {
+                cnt--;
+                audioSource.PlayOneShot(sound3);
+            }
+        }
+
+
         Score = d;
         
         // ごみ量を更新
@@ -58,6 +78,12 @@ public class UI : MonoBehaviour
         j = Mathf.Floor(a);
         HPslider.value = j / maxHp;
 
+        //GameOver
+        if ( HPslider.value <= 0)
+        {
+            SceneManager.LoadScene("Result");
+        }
+
         // 掃除率
         int Clear = AreaClear();
         GoalText.text = "掃除率 : " + d + "%";
@@ -74,11 +100,19 @@ public class UI : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        //処理ポイント接触かつゴミのストックがあるときだけ音鳴らす
+        if (other.gameObject.tag == "ShoriPoint" && i >= 1)
+        {
+            audioSource.PlayOneShot(sound2);
+        }
+
         // ゴミタグに接触したとき
         if (other.gameObject.tag == "Gomi")
         {
             // ごみ量が1増える
             i += 1;
+
+            audioSource.PlayOneShot(sound);
         }
 
         // 処理ポイントタグに接触した時
@@ -96,19 +130,25 @@ public class UI : MonoBehaviour
 
             // 進捗率の計算を初期化
             c = 0;
-
-
         }
         else if( other.gameObject.tag == "Heal")
         {
+            audioSource.PlayOneShot(sound4);
+
             // Healタグに接触すると充電量が5回復する
             a += 5;
         }
         else if(other.gameObject.tag == "Syougaibutu")
         {
             //Syougaibutuタグに接触するとゴミをすべて吐き出す(iを0に)
+            audioSource.PlayOneShot(sound5);
             i = 0;
         }
+        //ブラックホールの回復くんは今はとりあえずなかったことに
+        /*else if(other.gameObject.tag == "BlackHoleHeal")
+        {
+            cnt++;
+        }*/
     }
 
     // 以下は関数

@@ -19,7 +19,7 @@ public class BlackHole : MonoBehaviour
         if (count < 1) return;
 
         float PZ = this.transform.position.z;
-        PZ += 2;
+        PZ += 1;
         GameObject BlackHole = (GameObject)Instantiate(BlackHolePrefab, new Vector3(0, 5, PZ),
         Quaternion.Euler(0, 0, 0));//ブラックホール出すやつっす
 
