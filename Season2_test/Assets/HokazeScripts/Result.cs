@@ -23,7 +23,7 @@ public class Result : MonoBehaviour
     {
         a += Time.deltaTime;
 
-        if ( a >= 5)
+        if ( a >= 7)
         {
             SceneManager.LoadScene("Title");
         }

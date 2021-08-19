@@ -40,6 +40,10 @@ public class UI : MonoBehaviour
         // 充電量をMAXからスタート
         HPslider.value = 1;
 
+        //ストックと達成率を開始時に0に
+        i = 0;
+        d = 0;
+
         Application.targetFrameRate = 60;
     }
 
@@ -74,7 +78,7 @@ public class UI : MonoBehaviour
         }
 
         // 充電量を減らす
-        a -= Time.deltaTime;
+        a -= Time.deltaTime * 2.0f;
         j = Mathf.Floor(a);
         HPslider.value = j / maxHp;
 
