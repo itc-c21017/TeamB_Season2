@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScreenShot : MonoBehaviour
+public class ScreenShot2 : MonoBehaviour
 {
     // Start is called before the first frame update
     private void Update()
     {
         // スペースキーが押されたら
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             // スクリーンショットを保存
             CaptureScreenShot("ScreenShot.png");

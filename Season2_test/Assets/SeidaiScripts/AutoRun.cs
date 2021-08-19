@@ -23,8 +23,16 @@ public class AutoRun : MonoBehaviour
     public float accelerationZ;
     bool coroutineBool = false;
 
+    const float StunDuration = 0.5f;
+    float recoverTime = 0.0f;
+
     public UI ui;
     public int score;
+
+    bool IsStun()
+    {
+        return recoverTime > 0.0f;
+    }
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -35,7 +43,16 @@ public class AutoRun : MonoBehaviour
         if (Input.GetKeyDown("left")) MoveToLeft();
         if (Input.GetKeyDown("right")) MoveToRight();
         if (Input.GetKeyDown("space")) Jump();
-        { 
+
+        if (IsStun())
+        {
+
+            moveDirection.x = 0.0f;
+            moveDirection.z = 0.0f;
+            recoverTime -= Time.deltaTime;
+        }
+        else
+        {
             float acceleratedZ = moveDirection.z + (accelerationZ * Time.deltaTime);
             moveDirection.z = Mathf.Clamp(acceleratedZ, 0, speedZ);
 
@@ -45,9 +62,11 @@ public class AutoRun : MonoBehaviour
             score = UI.Ascore();//«”\’á‰º
             if (score >= 5)
             {
-                moveDirection.x *= 0.6f;
+                moveDirection.x *= 0.4f;
             }
+
         }
+        
         Vector3 globalDirection = transform.TransformDirection(moveDirection);
         controller.Move(globalDirection * Time.deltaTime);
 
@@ -58,6 +77,8 @@ public class AutoRun : MonoBehaviour
 
     public void MoveToLeft()
     {
+        if (IsStun()) return;
+
         if (targetLaneX > MinLaneX)            
             targetLaneX--;
         else
@@ -72,6 +93,8 @@ public class AutoRun : MonoBehaviour
     }
     public void MoveToRight()
     {
+        if (IsStun()) return;
+
         if (targetLaneX < MaxLaneX)            
             targetLaneX++;
         else
@@ -86,6 +109,7 @@ public class AutoRun : MonoBehaviour
     }
     public void Jump()
     {
+        if (IsStun()) return;
         moveDirection.y = speedJump;
         targetLaneX = -targetLaneX;
         if (!coroutineBool)
@@ -122,5 +146,16 @@ public class AutoRun : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         coroutineBool = false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (IsStun()) return;
+
+        if (other.gameObject.tag == "Syougaibutu")
+        {
+            recoverTime = StunDuration;
+            Destroy(other.gameObject,0.5f);
+        }
     }
 }
