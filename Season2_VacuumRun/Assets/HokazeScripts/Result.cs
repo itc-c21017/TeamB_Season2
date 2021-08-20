@@ -32,19 +32,25 @@ public class Result : MonoBehaviour
 
         Achievement.text = "Level of achievement@" + score + "“";
 
-        if ( score >= 20)
+        if ( score >= 90)
         {
-            ResultText.text = "RANK SSS";
+            ResultText.text = "RANK S";
         }
-        else if( score >= 10)
+        else if (score >= 80)
         {
             ResultText.text = "RANK A";
         }
-        else
+        else if (score >= 70)
+        {
+            ResultText.text = "RANK B";
+        }
+        else if (score >= 60)
         {
             ResultText.text = "RANK C";
         }
+        else
+        {
+            ResultText.text = "RANK D";
+        }
     }
-
-    
 }

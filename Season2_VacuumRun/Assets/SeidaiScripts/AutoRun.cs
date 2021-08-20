@@ -29,6 +29,12 @@ public class AutoRun : MonoBehaviour
     public UI ui;
     public int score;
 
+    private Vector3 touchStartPos;
+    private Vector3 touchEndPos;
+
+    public BlackHole blackHole;
+
+
     bool IsStun()
     {
         return recoverTime > 0.0f;
@@ -66,7 +72,7 @@ public class AutoRun : MonoBehaviour
             }
 
         }
-        
+
         Vector3 globalDirection = transform.TransformDirection(moveDirection);
         controller.Move(globalDirection * Time.deltaTime);
 
@@ -79,14 +85,14 @@ public class AutoRun : MonoBehaviour
     {
         if (IsStun()) return;
 
-        if (targetLaneX > MinLaneX)            
+        if (targetLaneX > MinLaneX)
             targetLaneX--;
         else
-        { 
-          if (!coroutineBool)
+        {
+            if (!coroutineBool)
             {
-               coroutineBool = true;
-               StartCoroutine("LeftRotation");
+                coroutineBool = true;
+                StartCoroutine("LeftRotation");
             }
             targetLaneX = MaxLaneX;
         }
@@ -95,7 +101,7 @@ public class AutoRun : MonoBehaviour
     {
         if (IsStun()) return;
 
-        if (targetLaneX < MaxLaneX)            
+        if (targetLaneX < MaxLaneX)
             targetLaneX++;
         else
         {
@@ -155,7 +161,84 @@ public class AutoRun : MonoBehaviour
         if (other.gameObject.tag == "Syougaibutu")
         {
             recoverTime = StunDuration;
-            Destroy(other.gameObject,0.5f);
+            Destroy(other.gameObject, 0.5f);
+        }
+    }
+    void Flick()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            touchStartPos = new Vector3(Input.mousePosition.x,
+                                        Input.mousePosition.y,
+                                        Input.mousePosition.z);
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            touchEndPos = new Vector3(Input.mousePosition.x,
+                                      Input.mousePosition.y,
+                                      Input.mousePosition.z);
+            GetDirection();
+        }
+    }
+    void GetDirection()
+    {
+        float directionX = touchEndPos.x - touchStartPos.x;
+        float directionY = touchEndPos.y - touchStartPos.y;
+        string Direction = "";
+
+        if (Mathf.Abs(directionY) < Mathf.Abs(directionX))
+        {
+            if (30 < directionX)
+            {
+                //右向きにフリック
+                Direction = "right";
+            }
+            else if (-30 > directionX)
+            {
+                //左向きにフリック
+                Direction = "left";
+            }
+        }
+        else if (Mathf.Abs(directionX) < Mathf.Abs(directionY))
+        {
+            if (30 < directionY)
+            {
+                //上向きにフリック
+                Direction = "up";
+            }
+            else if (-30 > directionY)
+            {
+                //下向きのフリック
+                Direction = "down";
+            }
+            else
+            {
+                //タッチを検出
+                Direction = "touch";
+            }
+        }
+
+        switch (Direction)
+        {
+            case "up":
+                //上フリックされた時の処理
+                Jump();
+                break;
+
+            case "right":
+                //右フリックされた時の処理
+                MoveToRight();
+                break;
+
+            case "left":
+                //左フリックされた時の処理
+                MoveToLeft();
+                break;
+
+            case "touch":
+                //タッチされた時の処理
+                blackHole.Shot();
+                break;
         }
     }
 }
