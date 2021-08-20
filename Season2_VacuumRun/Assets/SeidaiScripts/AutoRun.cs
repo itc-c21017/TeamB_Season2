@@ -116,10 +116,11 @@ public class AutoRun : MonoBehaviour
     public void Jump()
     {
         if (IsStun()) return;
-        moveDirection.y = speedJump;
-        targetLaneX = -targetLaneX;
-        if (!coroutineBool)
+
+        if (!coroutineBool && controller.isGrounded)
         {
+            moveDirection.y = speedJump;
+            targetLaneX = -targetLaneX;
             coroutineBool = true;
             StartCoroutine("JumpRotation");
         }

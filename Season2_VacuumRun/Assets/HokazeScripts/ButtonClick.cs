@@ -25,6 +25,6 @@ public class ButtonClick : MonoBehaviour
     }
     void Main()
     {
-        SceneManager.LoadScene("Play");
+        SceneManager.LoadScene("User guide");
     }
 }
